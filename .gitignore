@@ -1,3 +1,5 @@
 # exclude everything except directory
-    */*
-    !/testSample
+*/*
+/cmake-build-debug/*  
+!/testSample
+    
