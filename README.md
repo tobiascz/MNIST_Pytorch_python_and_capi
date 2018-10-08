@@ -1,1 +1,1 @@
-# MNIST_Pytorch_python_and_c-
+# MNIST_Pytorch_python_and_capi
