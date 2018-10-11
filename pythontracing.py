@@ -107,13 +107,17 @@ def main():
 
     torch.save(model, "model.pth")
 
+def createTracedModel(model, random_input):
+    traced_net = torch.jit.trace(model,random_input)
+    traced_net.save("model_trace.pt")
 
-def demo():
+    print("Success - model_trace was saved!")
+
+
+def saveModel():
     use_cuda = torch.cuda.is_available()
     mnist_testset = datasets.MNIST(root='./data', train=False, download=True, transform=None)
     train_image, train_target= mnist_testset[24]
-    print (type(train_image))
-
     train_image.show()
 
     device = torch.device("cuda" if use_cuda else "cpu")
@@ -124,16 +128,16 @@ def demo():
                        ])
     tensor_image = loader(train_image).unsqueeze(0).to(device)
     output = model(tensor_image)
-    print(output)
     pred = output.max(1, keepdim=True)[1]
     pred = torch.squeeze(pred)
 
     print("Success - Train target: " + str(train_target.cpu().numpy()) + " Prediction: " + str(pred.cpu().numpy()))
 
-    # TRACING THE MODEL
-    traced_net = torch.jit.trace(model,tensor_image)
-    traced_net.save("model_trace.pt")
+
+    # TRACING THE MODEL comment out if you dont wanna save the trace model in a demo run
+    createTracedModel(model, tensor_image)
+
 
 
 if __name__ == '__main__':
-    demo()
+    saveModel()s
