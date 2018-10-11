@@ -140,4 +140,5 @@ def saveModel():
 
 
 if __name__ == '__main__':
+    #main() creates the model.pth. saveModel takes the model.pth and random input and creates model.pt.
     saveModel()
