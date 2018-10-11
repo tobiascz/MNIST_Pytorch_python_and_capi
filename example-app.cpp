@@ -22,7 +22,7 @@ void showImage(Mat image)
 int main(int argc, const char* argv[]) {
     //std::cout << "OpenCV version : " << CV_VERSION << std::endl;
 	Mat image;
-	image = imread("../testSample/img_63.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	image = imread("../MNISTsamples/img_63.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 	showImage(image);
 	// Deserialize the ScriptModule from a file using torch::jit::load().
 	std::shared_ptr<torch::jit::script::Module> module = torch::jit::load("../model_trace.pt");
